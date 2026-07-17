@@ -83,4 +83,3 @@ sudo apt install apache2 -y
 
 ```
 http://<EC2-Public-IP>
-```
