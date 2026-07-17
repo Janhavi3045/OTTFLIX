@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OTTFLIX</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:#141414;
+color:#fff;
+}
+
+header{
+position:fixed;
+top:0;
+width:100%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 60px;
+background:linear-gradient(to bottom,#000,transparent);
+z-index:100;
+}
+
+.logo{
+font-size:40px;
+font-weight:bold;
+color:#E50914;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:25px;
+font-size:18px;
+}
+
+nav a:hover{
+color:#E50914;
+}
+
+.banner{
+height:90vh;
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+padding-left:70px;
+position:relative;
+transition:1s;
+}
+
+.banner::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(to right,rgba(0,0,0,.85),rgba(0,0,0,.2));
+}
+
+.banner-content{
+position:relative;
+z-index:2;
+max-width:550px;
+}
+
+.banner h1{
+font-size:70px;
+margin-bottom:15px;
+}
+
+.banner p{
+font-size:20px;
+line-height:30px;
+margin-bottom:25px;
+color:#ddd;
+}
+
+.buttons button{
+padding:14px 30px;
+margin-right:10px;
+font-size:18px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+.play{
+background:white;
+color:black;
+}
+
+.info{
+background:#555;
+color:white;
+}
+
+.section{
+padding:40px;
+}
+
+.section h2{
+margin-bottom:20px;
+font-size:28px;
+}
+
+.movies{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:25px;
+}
+
+.card{
+background:#1f1f1f;
+border-radius:12px;
+overflow:hidden;
+transition:.3s;
+}
+
+.card:hover{
+transform:scale(1.05);
+}
+
+.card img{
+width:100%;
+height:340px;
+object-fit:cover;
+}
+
+.card h3{
+padding:15px;
+text-align:center;
+}
+
+.watch{
+display:block;
+width:90%;
+margin:0 auto 20px;
+padding:12px;
+background:#E50914;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+font-size:16px;
+}
+
+.popup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.95);
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+.popup video{
+width:80%;
+border-radius:10px;
+}
+
+.close{
+position:absolute;
+right:40px;
+top:20px;
+font-size:45px;
+cursor:pointer;
+}
+
+footer{
+background:#000;
+padding:20px;
+text-align:center;
+color:#aaa;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">OTTFLIX</div>
+
+<nav>
+<a href="#">Home</a>
+<a href="#">Movies</a>
+<a href="#">Trailers</a>
+<a href="#">My List</a>
+</nav>
+
+</header>
+
+<div id="banner" class="banner">
+
+<div class="banner-content">
+
+<h1 id="title">Chhava</h1>
+
+<p id="description">
+Watch your favourite movie trailers on OTTFLIX hosted using AWS EC2 and Amazon S3.
+</p>
+
+<div class="buttons">
+
+<button class="play" onclick="playBanner()">
+▶ Play Trailer
+</button>
+
+<button class="info">
+More Info
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>Trending Movies</h2>
+
+<div class="movies">
+
+<div class="card">
+
+<img src="https://ottplatformm.s3.ap-south-1.amazonaws.com/Chhaava_film_poster.jpg">
+
+<h3>Chhava</h3>
+
+<button class="watch"
+onclick="openTrailer('https://ottplatformm.s3.ap-south-1.amazonaws.com/videoplayback.mp4')">
+▶ Watch Trailer
+</button>
+
+</div>
+
+<div class="card">
+
+<img src="https://ottplatformm.s3.ap-south-1.amazonaws.com/Dhurandar+poster.jpg">
+
+<h3>Dhurandar</h3>
+
+<button class="watch"
+onclick="openTrailer('https://ottplatformm.s3.ap-south-1.amazonaws.com/videoplayback+(1).mp4')">
+▶ Watch Trailer
+</button>
+
+</div>
+
+<div class="card">
+
+<img src="https://ottplatformm.s3.ap-south-1.amazonaws.com/Eetha+poster.jpg">
+
+<h3>EETHA</h3>
+
+<button class="watch"
+onclick="openTrailer('https://ottplatformm.s3.ap-south-1.amazonaws.com/videoplayback+(2).mp4')">
+▶ Watch Trailer
+</button>
+
+</div>
+
+<div class="card">
+
+<img src="https://ottplatformm.s3.ap-south-1.amazonaws.com/yjhd+poster.jpg">
+
+<h3>Yeh Jawani Hai Deewani</h3>
+
+<button class="watch"
+onclick="openTrailer('https://ottplatformm.s3.ap-south-1.amazonaws.com/yeh-jawaani-hai-deewani-official-trailer-ranbir-kapoor-deepika-padukone-ytmp4.savetube.vip.mp4')">
+▶ Watch Trailer
+</button>
+
+</div>
+
+</div>
+
+</div>
+<!-- Trailer Popup -->
+
+<div id="popup" class="popup">
+
+<span class="close" onclick="closeTrailer()">&times;</span>
+
+<video id="video" controls autoplay></video>
+
+</div>
+
+<footer>
+
+<h3>OTTFLIX</h3>
+
+<p>Unlimited Movies | Unlimited Entertainment</p>
+
+<p>Hosted on AWS EC2 & Amazon S3</p>
+
+</footer>
+
+<script>
+
+// Banner Posters
+
+const posters=[
+"https://ottplatformm.s3.ap-south-1.amazonaws.com/Chhaava_film_poster.jpg",
+"https://ottplatformm.s3.ap-south-1.amazonaws.com/Dhurandar+poster.jpg",
+"https://ottplatformm.s3.ap-south-1.amazonaws.com/Eetha+poster.jpg",
+"https://ottplatformm.s3.ap-south-1.amazonaws.com/yjhd+poster.jpg"
+];
+
+// Movie Titles
+
+const titles=[
+"Chhava",
+"Dhurandar",
+"EETHA",
+"Yeh Jawani Hai Deewani"
+];
+
+// Movie Descriptions
+
+const descriptions=[
+
+"A historical action drama starring Vicky Kaushal.",
+
+"An upcoming action entertainer with thrilling sequences.",
+
+"A heartfelt emotional drama with unforgettable moments.",
+
+"A timeless coming-of-age romantic adventure."
+
+];
+
+// Banner Trailer Links
+
+const bannerTrailer=[
+
+"https://ottplatformm.s3.ap-south-1.amazonaws.com/videoplayback.mp4",
+
+"https://ottplatformm.s3.ap-south-1.amazonaws.com/videoplayback+(1).mp4",
+
+"https://ottplatformm.s3.ap-south-1.amazonaws.com/videoplayback+(2).mp4",
+
+"https://ottplatformm.s3.ap-south-1.amazonaws.com/yeh-jawaani-hai-deewani-official-trailer-ranbir-kapoor-deepika-padukone-ytmp4.savetube.vip.mp4"
+
+];
+
+let current=0;
+
+// Banner Slider
+
+function changeBanner(){
+
+document.getElementById("banner").style.backgroundImage="url('"+posters[current]+"')";
+
+document.getElementById("title").innerHTML=titles[current];
+
+document.getElementById("description").innerHTML=descriptions[current];
+
+current++;
+
+if(current>=posters.length){
+
+current=0;
+
+}
+
+}
+
+// Initial Banner
+
+changeBanner();
+
+// Auto Change Every 5 Seconds
+
+setInterval(changeBanner,5000);
+
+// Play Banner Trailer
+
+function playBanner(){
+
+let index=current-1;
+
+if(index<0){
+
+index=3;
+
+}
+
+openTrailer(bannerTrailer[index]);
+
+}
+
+// Open Trailer Popup
+
+function openTrailer(videoUrl){
+
+document.getElementById("popup").style.display="flex";
+
+let player=document.getElementById("video");
+
+player.innerHTML="<source src='"+videoUrl+"' type='video/mp4'>";
+
+player.load();
+
+player.play();
+
+}
+
+// Close Popup
+
+function closeTrailer(){
+
+let player=document.getElementById("video");
+
+player.pause();
+
+document.getElementById("popup").style.display="none";
+
+}
+
+// Close When Clicking Outside
+
+window.onclick=function(event){
+
+if(event.target==document.getElementById("popup")){
+
+closeTrailer();
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
