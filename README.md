@@ -56,18 +56,7 @@ Loads index.html
 Amazon S3 Bucket
    ├── Movie Posters
    └── Trailer Videos
-```
-
----
-
-## Project Structure
-
-```
-OTTFLIX/
-│── index.html
-│── README.md
-```
-
+``
 ---
 
 ##  How to Run
@@ -95,29 +84,3 @@ sudo apt install apache2 -y
 ```
 http://<EC2-Public-IP>
 ```
-
----
-
-## Screenshots
-
-- Home Page
-- Banner Slider
-- Movie Cards
-- Trailer Popup
-
-(Add screenshots here if available.)
-
----
-
-## Future Enhancements
-
-- User Login
-- Movie Search
-- Categories
-- Watchlist
-- CloudFront Integration
-- DynamoDB for movie information
-- Admin Panel
-
----
-
